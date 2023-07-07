@@ -1,0 +1,16 @@
+<style></style>
+
+<!-- <span
+  class="glyphicon"
+  [class.glyphicon-star]="isFavourite"
+  [class.glyphicon-start-empty]="!isFavourite"
+  (click)="onClick()"
+>
+<i
+[ngClass]="isFavourite ? 'bi bi-star-fill' : 'bi bi-star'"
+></i>
+</span> -->
+
+<span (click)="onClick()">
+  <i [ngClass]="isFavourite ? 'bi bi-star-fill' : 'bi bi-star'"></i>
+</span>

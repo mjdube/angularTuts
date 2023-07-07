@@ -7,30 +7,44 @@ import { CoursesService } from './courses.service';
   selector: 'courses',
 
   template: `
+    <!-- custom pipe -->
+    {{ text | summary : 10 }}
+    <img [] />
+
+    <!-- built-in Pipes -->
+    <!-- {{ courses.title | uppercase }} <br />
+    {{ courses.students | number }} <br />
+    {{ courses.rating | number : '1.2-2' }} <br />
+    {{ courses.price | currency : 'ZAR' : true : '3.2-2' }} <br />
+    {{ courses.releaseDate | date : 'medium' }} -->
+
     <!-- class binding  -->
-    <button class="btn btn-primary" [class.active]="isActive">Save</button>
+    <!-- <button class="btn btn-primary" [class.active]="isActive">Save</button> -->
 
     <!-- style binding -->
-    <button class="btn" [style.backgroundColor]="isActive ? 'blue' : 'white'">
-      Save
-    </button>
+    <!-- <button class="btn" [style.backgroundColor]="isActive ? 'blue' : 'white'"> -->
+    <!-- Save -->
+    <!-- </button> -->
 
     <!-- 2) event binding and bubble event -->
-    <div (click)="onDivClick()">
-      <!-- 1) event binding -->
-      <button class="btn btn-secondary" (click)="onSave($event)">Save</button>
-    </div>
+    <!-- <div (click)="onDivClick()"> -->
+    <!-- 1) event binding -->
+    <!-- <button class="btn btn-secondary" (click)="onSave($event)">Save</button> -->
+    <!-- </div>  -->
 
-    <!-- two way bidning -->
-    <input
+    <!-- two way bidning   <----- ngModel is preferred -->
+    <!-- <input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />  -->
+
+    <!-- 
+      two way binding
+      <input
       [value]="email"
       (keyup.enter)="email = $event.target.value; onKeyUp()"
-    />
-    <input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
+    /> -->
 
     <!-- template variables -->
-    <!-- <input #email <-- template (keyup.enter)="onKeyUp(email.value)" /> -->
-    <!-- <input (keyup.enter)="onKeyUp($event)" /> -->
+    <!-- <input #email <-- template variable (keyup.enter)="onKeyUp(email.value)" /> -->
+    <!-- <input (keyup.enter)="onKeyUp($event)" /> <-- get the value -->
 
     <!-- event filter -->
     <!-- 2) <input (keyup.enter)="onKeyUp()" /> <<--- preferred way -->
@@ -38,7 +52,7 @@ import { CoursesService } from './courses.service';
   `, //
 
   // template: `
-  //     <!-- interpolotion  -->
+  //     <!-- string interpolotion  -->
   //   <h2>{{ title }}</h2>
   //   <h2 [textContent]="title"></h2>
 
@@ -64,10 +78,19 @@ import { CoursesService } from './courses.service';
   // template: '<h2>Courses<h2>'
   // template: '<h2>{{ "title : " + getTitle() }}<h2>', // <--- data binding
   // template: '<h2>{{ "title : " title }}<h2>', // <--- data binding
-}) // <--- decorator function
+})
+// <--- decorator function
 export class CoursesComponent {
+  text =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu blandit nulla. Etiam tempor velit quis felis dignissim feugiat. Quisque auctor purus in velit porta maximus. Duis sapien sapien, cursus non libero sit amet, sagittis tempor magna. Proin egestas condimentum lobortis. Sed in ligula euismod, vulputate elit quis, dignissim sem. Phasellus quis accumsan nunc. Vestibulum at erat in mi mollis vestibulum.';
   title = 'List of courses';
-  courses;
+  courses = {
+    title: 'The complete anagular Course',
+    rating: 4.9745,
+    students: 30123,
+    price: 190.95,
+    releaseDate: new Date(2023, 3, 1),
+  };
   email = 'me@example.co.za';
 
   imageUrl = 'http://lorempixel.com/400/200';
@@ -78,10 +101,9 @@ export class CoursesComponent {
 
   // Logic for calling an HTTP service
   constructor(service: CoursesService) {
-    //<-- dependancy injection, provid
-    this.courses = service.getCourses();
-
-    // <-- dependancy injections
+    // 2) <-- dependancy injection, provide decoupled class
+    // this.courses = service.getCourses();
+    // 1) <-- dependancy injections coupled class
     // let service = new CoursesService();
     // this.courses = service.getCourses();
   }
@@ -104,10 +126,17 @@ export class CoursesComponent {
     console.log('onDivClick was clicked');
   }
 
-  /* event variable */
-  onKeyUp(email: string) {
-    console.log(email);
+  /* two way binding event  variable */
+  onKeyUp() {
+    console.log(this.email);
   }
+
+  // template variable <------ Easier way
+  // onKeyUp(email: string) {
+  //   console.log(email);
+  // }
+
+  //   template variable
   //   onKeyUp($event: any) {
   //     console.log($event.target.value);
   //   }

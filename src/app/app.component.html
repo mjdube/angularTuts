@@ -1,3 +1,39 @@
 <h1>Angular</h1>
+<!-- 
 <courses></courses>
-<app-authors></app-authors>
+<app-authors></app-authors> -->
+
+<!-- input properties -->
+<!-- <execises [isFavourite]="post.isFavourite" (change)="onFavouriteChange()"></execises> -->
+<!-- <favourite [isFavourite]="post.isFavourite"></favourite> -->
+
+<!-- Alias input properties -->
+<!-- <favourite
+  [is-Favourite]="post.isFavourite"
+  (change)="onFavouriteChange($event)"
+></favourite> -->
+
+<!-- ngContent 
+
+<boostrap-panel>
+  <div class="heading">{{ title }}</div>
+  <div class="body">
+    <h2>Body</h2>
+    <p>Some content here...</p>
+  </div>
+</boostrap-panel> -->
+
+<!-- ngContainer 
+    
+<boostrap-panel>
+  <ng-container class="heading">{{ title }}</ng-container>
+  <div class="body">
+    <h2>Body</h2>
+    <p>Some content here...</p>
+  </div>
+</boostrap-panel> -->
+<like
+  [likesCount]="tweet.likesCount"
+  [isActive]="tweet.isLiked"
+  (click)="pressedLiked($event)"
+></like>
