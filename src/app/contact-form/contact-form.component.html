@@ -1,0 +1,190 @@
+<!-- 
+  ngForm directive --- it gets added by default
+
+  <form #form="ngForm" (ngSubmit)="submit(form)">
+    NgModalGroup Directive
+  <div ngModelGroup="contact" #contact="ngModelGroup">
+    <div *ngIf="!contact.valid">...</div>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        ngModel
+        name="firstName"
+        #firstName="ngModel"
+        id="firstName"
+        type="text"
+        class="form-control"
+        (change)="log(firstName)"
+        required
+        minlength="3"
+        maxlength="10"
+        pattern="banana"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="firstName.touched && !firstName.valid"
+      >
+        First Name is required
+          <div *ngIf="firstName.errors.required">
+          First Name is required
+        </div>
+        <div *ngIf="firstName.errors.minlength">
+          First name should be at least {{ firstName.errors.minlength.requiredLength }} characters
+        </div>
+        <div *ngIf="firstName.errors.maxlength">
+          First name should be max 10 characters</div>
+        <div *ngIf="firstName.errors.pattern">
+          First name doesn't match the pattern
+        </div> 
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea
+      ngModel
+      name="comment"
+      id="comment"
+      cols="30"
+      rows="10"
+      class="form-control"
+      ></textarea>
+    </div>
+    <button class="btn btn-primary">submit</button>
+  </form>
+-->
+
+<!-- NgForm directive-->
+<form #form="ngForm" (ngSubmit)="submit(form)">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <!-- ngModel directive -->
+    <input
+      type="text"
+      class="form-control"
+      required
+      minlength="3"
+      maxlength="10"
+      pattern="banana"
+      ngModel
+      name="firstName"
+      #fname="ngModel"
+      id="firstName"
+      (change)="log(fname)"
+    />
+    <div class="alert alert-danger" *ngIf="fname.touched && !fname.valid">
+      <!-- <div *ngIf="fname.errors.required">
+        First Name is required
+      </div>
+      <div *ngIf="fname.errors.minlength">
+        First name should be at least
+        {{ fname.errors.minlength.requiredLength }} characters
+      </div>
+      <div *ngIf="fname.errors.maxlength">
+        First name should be max 10 characters
+      </div>
+      <div *ngIf="fname.errors.pattern">
+        First name doesn't match the pattern
+      </div> -->
+    </div>
+    <!-- 
+    <div *ngIf="firstName.errors.required">
+      First Name is required
+    </div>
+    <div *ngIf="firstName.errors.minlength">
+      First name should be at least {{ firstName.errors.minlength.requiredLength }} characters
+    </div>
+    <div *ngIf="firstName.errors.maxlength">
+      First name should be max 10 characters</div>
+      <div *ngIf="firstName.errors.pattern">
+        First name doesn't match the pattern
+      </div> 
+    -->
+    <div class="alert alert-danger" *ngIf="fname.touched && !fname.valid">
+      First Name is required
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea
+      ngModel
+      name="comment"
+      id="comment"
+      cols="30"
+      rows="10"
+      class="form-control"
+    ></textarea>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ngModel name="isSubscribed" />
+      Subscribe to mailing
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="contactMethod"> <h1>Contact Method</h1> </label>
+    <!-- normal  -->
+    <select
+      ngModel
+      name="contactMethod"
+      id="contactMethod"
+      class="form-control"
+    >
+      <option value=""></option>
+      <!-- standard -->
+      <option *ngFor="let method of contactMethods" [value]="method.id">
+        {{ method.name }}
+      </option>
+      <!-- ngValue uses the complex object -->
+      <!-- <option *ngFor="let method of contactMethods" [ngValue]="method">
+        {{ method.name }}
+      </option> -->
+    </select>
+
+    <!-- multiple 
+      <select
+      multiple
+      ngModel
+      name="contactMethod"
+      id="contactMethod"
+      class="form-control"
+      >
+      <option value=""></option>
+    
+    <option *ngFor="let method of contactMethods" [value]="method.id">
+      {{ method.name }}
+    </option>
+    ngValue uses the complex object
+       <option *ngFor="let method of contactMethods" [ngValue]="method"> 
+        {{ method.name }}
+      </option>
+    </select>
+  --></div>
+
+  <!-- Radios -->
+  <!-- standard -->
+  <div class="radio">
+    <label>
+      <input ngModel type="radio" name="contactMethod1" value="1" />
+      Email
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input ngModel type="radio" name="contactMethod1" value="1" />
+      Phone
+    </label>
+  </div>
+
+  <!-- Dynamic -->
+  <div *ngFor="let method of contactMethods" class="radio">
+    <label>
+      <input ngModel type="radio" name="contactMethod1" [value]="method.id" />
+      {{ method.name }}
+    </label>
+  </div>
+  <p>
+    {{ form.value | json }}
+  </p>
+  <button class="btn btn-primary" [disabled]="!form.valid">submit</button>
+</form>

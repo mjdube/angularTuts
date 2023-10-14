@@ -3,8 +3,8 @@ import { CoursesService } from './courses.service';
 
 @Component({
   // <--- decorator
-  // <courses> "courses" | <div class="courses"> ".courses" | <div id="courses"> "#course"
-  selector: 'courses',
+  // <courses> "courses" tag selector | <div class="courses"> ".courses" | <div id="courses"> "#course"
+  selector: 'courses', // <--- css selector
 
   template: `
     <!-- custom pipe -->
@@ -18,36 +18,47 @@ import { CoursesService } from './courses.service';
     {{ courses.price | currency : 'ZAR' : true : '3.2-2' }} <br />
     {{ courses.releaseDate | date : 'medium' }} -->
 
+    <!-- ================================== -->
+
     <!-- class binding  -->
     <!-- <button class="btn btn-primary" [class.active]="isActive">Save</button> -->
+
+    <!-- ================================= -->
 
     <!-- style binding -->
     <!-- <button class="btn" [style.backgroundColor]="isActive ? 'blue' : 'white'"> -->
     <!-- Save -->
     <!-- </button> -->
 
+    <!-- ================================= -->
+
     <!-- 2) event binding and bubble event -->
     <!-- <div (click)="onDivClick()"> -->
+
     <!-- 1) event binding -->
     <!-- <button class="btn btn-secondary" (click)="onSave($event)">Save</button> -->
     <!-- </div>  -->
 
-    <!-- two way bidning   <----- ngModel is preferred -->
+    <!-- ============================== -->
+    <!-- 2) two way bidning   <----- ngModel is preferred -->
     <!-- <input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />  -->
 
-    <!-- 
+    <!-- 1)
       two way binding
       <input
       [value]="email"
       (keyup.enter)="email = $event.target.value; onKeyUp()"
     /> -->
 
+    <!-- ================================== -->
     <!-- template variables -->
-    <!-- <input #email <-- template variable (keyup.enter)="onKeyUp(email.value)" /> -->
+    <!-- <input (#email <-- template variable) (keyup.enter)="onKeyUp(email.value)" /> <---- 'email' is the template variable" -->
     <!-- <input (keyup.enter)="onKeyUp($event)" /> <-- get the value -->
 
-    <!-- event filter -->
+    <!-- event filter triggered only when the "enter button" was pressed -->
     <!-- 2) <input (keyup.enter)="onKeyUp()" /> <<--- preferred way -->
+    <!-- 2) <input (keyup.enter)="onKeyUp($event)" /> <<--- preferred way to the value "$event.target.value"-->
+
     <!-- 1) <input (keyup)="onKeyUp($event)" /> -->
   `, //
 
@@ -68,6 +79,9 @@ import { CoursesService } from './courses.service';
   //   </table>
   // `,
 
+  // =============================================================================
+
+  //  Ng for loop directive -- element modifier
   //   template: `
   //     <h2>{{ title }}</h2>
   //     <ul>
@@ -75,15 +89,20 @@ import { CoursesService } from './courses.service';
   //     </ul>
   //   `,
 
-  // template: '<h2>Courses<h2>'
+  // ============================================================================
+
+  // String Interpolation
+  // template: '<h2>Courses<h2>' ====== String intepolation
   // template: '<h2>{{ "title : " + getTitle() }}<h2>', // <--- data binding
   // template: '<h2>{{ "title : " title }}<h2>', // <--- data binding
 })
+
 // <--- decorator function
 export class CoursesComponent {
   text =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu blandit nulla. Etiam tempor velit quis felis dignissim feugiat. Quisque auctor purus in velit porta maximus. Duis sapien sapien, cursus non libero sit amet, sagittis tempor magna. Proin egestas condimentum lobortis. Sed in ligula euismod, vulputate elit quis, dignissim sem. Phasellus quis accumsan nunc. Vestibulum at erat in mi mollis vestibulum.';
   title = 'List of courses';
+
   courses = {
     title: 'The complete anagular Course',
     rating: 4.9745,
@@ -99,11 +118,12 @@ export class CoursesComponent {
 
   // courses = ["course1", "course2", "courses3"]
 
-  // Logic for calling an HTTP service
+  // ======== Logic for calling an HTTP service USING  dependancy injection =============
   constructor(service: CoursesService) {
-    // 2) <-- dependancy injection, provide decoupled class
+    // 2) <-- dependancy injection, provide class into a component
     // this.courses = service.getCourses();
-    // 1) <-- dependancy injections coupled class
+    //====
+    // 1) <-- dependancy injections tightly class
     // let service = new CoursesService();
     // this.courses = service.getCourses();
   }
@@ -131,7 +151,9 @@ export class CoursesComponent {
     console.log(this.email);
   }
 
-  // template variable <------ Easier way
+  // ====================================================
+
+  // template variable <------ Easier way simplifies code
   // onKeyUp(email: string) {
   //   console.log(email);
   // }
@@ -140,6 +162,8 @@ export class CoursesComponent {
   //   onKeyUp($event: any) {
   //     console.log($event.target.value);
   //   }
+
+  // ===================================================
 
   /* event filter */
   //   2) onKeyUp() {

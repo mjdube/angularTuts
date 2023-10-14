@@ -14,7 +14,6 @@
 ></favourite> -->
 
 <!-- ngContent 
-
 <boostrap-panel>
   <div class="heading">{{ title }}</div>
   <div class="body">
@@ -23,8 +22,7 @@
   </div>
 </boostrap-panel> -->
 
-<!-- ngContainer 
-    
+<!-- ngContainer     
 <boostrap-panel>
   <ng-container class="heading">{{ title }}</ng-container>
   <div class="body">
@@ -32,8 +30,135 @@
     <p>Some content here...</p>
   </div>
 </boostrap-panel> -->
+
+<!-- DIRECTIVES -->
+<!-- ngIf Directive -->
+<!-- 1) 
+<div *ngIf="courses.length > 0">
+    List of courses
+</div>
+<div *ngIf="courses.length == 0">
+    No course yet
+</div> -->
+
+<!-- 2) 
+<div *ngIf="courses.length > 0; else noCourses">List of courses</div>
+<ng-template #noCourses> No course yet </ng-template> -->
+
+<!-- 3) -->
+<!-- <div *ngIf="courses.length > 0; then coursesList; else noCourses"></div>
+<ng-template #coursesList>List of courses</ng-template>
+<ng-template #noCourses> No course yet </ng-template>
+<ul class="nav nav-pills nav-fill">
+  <li [class.active]="viewMode == 'map'">
+    <a (click)="viewMode = 'map'">Map View</a>
+  </li>
+  <li [class.active]="viewMode == 'list'">
+    <a (click)="viewMode = 'list'">List View</a>
+  </li>
+</ul> -->
+
+<!-- ngSwitch -->
+<div [ngSwitch]="viewMode">
+  <div *ngSwitchCase="'map'">Map view content</div>
+  <div *ngSwitchCase="'list'">List view content</div>
+  <div *ngSwitchDefault>Otherwise</div>
+</div>
+
+<!-- hidden 
+    <div hidden> -->
+<div [hidden]="courses.length == 0">List of courses</div>
+<div [hidden]="courses.length > 0">No course yet</div>
+
+<!-- ngFor -->
+<!-- <ul>
+  <li *ngFor="let course of courses">
+    {{ course.name }}
+  </li>
+</ul> -->
+
+<!-- <ul>
+  <li *ngFor="let course of courses; index as i">
+    {{ i }} {{ course.name }}
+  </li>
+</ul> -->
+
+<!-- <ul>
+    <li *ngFor="let course of courses; even as isEven">
+      {{ course.name }} <span *ngIf="isEven">(Even)</span>
+    </li>
+  </ul> -->
+
+<!-- <div *ngIf="courses.length > 0; else noCourses">List of Courses</div>
+<ng-template> No Courses </ng-template>
+<button
+  class="btn btn-primary"
+  style="background-color: chartreuse"
+  (click)="onLoadCourses()"
+>
+  Load
+</button>
+<button class="btn btn-primary" (click)="onAdd()">Add</button>
+<ul>
+  <li *ngFor="let course of courses; trackBy: trackCourse">
+    {{ course.name }}
+    <button class="btn btn-warning" (click)="onRemove(course)">Remove</button>
+  </li>
+</ul> -->
+
+<!-- <button class="btn btn-primary" (click)="onAdd()">Add</button>
+<ul>
+  <li *ngFor="let course of courses">
+    {{ course.name }}
+    <button class="btn btn-warning" (click)="onRemove(course)">Remove</button>
+  </li>
+</ul> -->
+
+<!-- ngStyle -->
+<!-- <button
+  [style.backgroundColor]="canSave ? 'blue' : 'gray'"
+  [style.color]="canSave ? 'white' : 'black'"
+  [style.fontWeight]="canSave ? 'bold' : 'normal'"
+>
+  Save
+</button>
+
+<button
+  [style.backgroundColor]="canSave ? 'blue' : 'gray'"
+  [style.color]="canSave ? 'white' : 'black'"
+  [style.fontWeight]="canSave ? 'bold' : 'normal'"
+  [style]="{
+    'backgroundColor': canSave ? 'blue' : 'gray',
+    'color' : canSave ? 'white': 'black',  
+    'fontWeight' : canSave ? 'bold': 'normal',  
+  }"
+>
+  Save
+</button> -->
+
+<!-- Safe traversal operator -->
+<!-- <span *ngIf="task.assignee != null">{{ task.assignee? }}</span> -->
+
+<!-- custom diretive -->
+<!-- <input type="text" InputFormat [format]="'uppercase'"/> -->
+<input type="text" InputFormat="'uppercase'" />
+
+<!-- Like Exercise -->
 <like
   [likesCount]="tweet.likesCount"
   [isActive]="tweet.isLiked"
   (click)="pressedLiked($event)"
 ></like>
+
+<!-- zippy exercise -->
+<!-- <zippy title="Shipping Details">Shipping Detail Content</zippy>
+<zippy title="Billing Details">Billing Detail Content</zippy> -->
+
+<!-- 
+  <contact-form></contact-form>
+-->
+
+<!-- Exercise -->
+<course-form></course-form>
+<!-- 
+-->
