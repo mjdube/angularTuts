@@ -1,6 +1,11 @@
-<h1>hello there!</h1>
+<div (click)="likedClicked()">
+  <span><i [ngClass]="isLike ? 'bi bi-heart-fill' : 'bi bi-heart'"></i></span>
+  {{ likeCount }}
+</div>
+
 <div (click)="touchedStar()">
   <i [ngClass]="isTouched ? 'bi bi-star-fill' : 'bi bi-star'"></i>
 </div>
+
 <input [(ngModel)]="text" />
 <p>{{ text | preposition }}</p>
