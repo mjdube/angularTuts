@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 // Components
@@ -25,6 +25,9 @@ import { ZippyComponent } from './zippy/zippy.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { CourseFormComponent } from './course-form/course-form.component';
+import { FormContactComponent } from './form-contact/form-contact.component';
+import { SignupFormComponent } from './signup-form/signup-form.component';
+import { NewCourseComponent } from './new-course/new-course.component';
 
 // <--- NgModule decorator
 @NgModule({
@@ -44,13 +47,16 @@ import { CourseFormComponent } from './course-form/course-form.component';
     ZippyComponent,
     ContactFormComponent,
     CourseFormComponent,
-  ],
+    FormContactComponent,
+    SignupFormComponent,
+  NewCourseComponent,],
   // import Modules
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
   ],
   // register services
   providers: [CoursesService, AuthorsService],

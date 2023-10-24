@@ -100,4 +100,9 @@ export class AppComponent {
   likeClicked(liked: Like) {
     console.log('likeClicked function pressed', liked);
   }
+
+  changeViewMode(view: string) {
+    if (view.includes('list')) this.viewMode = 'list';
+    else if (view.includes('map')) this.viewMode = 'map';
+  }
 }

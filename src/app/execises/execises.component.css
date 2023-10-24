@@ -5,3 +5,14 @@
 .bi-heart{
     color: #ccc;
 }
+
+.block {
+    padding: 20px;
+    background-color: #ccc;
+    border: black solid 1px;
+}
+
+.block-below {
+    border: black solid 1px;
+    padding: 20px;
+}

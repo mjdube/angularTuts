@@ -1,11 +1,132 @@
-<div (click)="likedClicked()">
+<!-- <div style="margin-bottom: 2px">
+  <div class="block" style="cursor: pointer" (click)="openExpend('ship')">
+    Shipping details <span></span>
+  </div>
+  <div *ngIf="shipExp" class="block-below">
+    Shipping description and all the information
+  </div>
+</div>
+<div>
+  <div class="block" style="cursor: pointer" (click)="openExpend('bill')">
+    Billing details
+  </div>
+  <div *ngIf="billExp" class="block-below">
+    Billing description and all the information
+  </div>
+</div> -->
+<!-- <div (click)="likedClicked()">
   <span><i [ngClass]="isLike ? 'bi bi-heart-fill' : 'bi bi-heart'"></i></span>
   {{ likeCount }}
-</div>
+</div> -->
 
-<div (click)="touchedStar()">
+<!-- <div (click)="likedClicked()">
+  <span><i class="? 'bi bi-heart" [class.fill]="isLike"></i></span>
+  {{ likeCount }}
+</div> -->
+
+<!-- <div (click)="touchedStar()">
   <i [ngClass]="isTouched ? 'bi bi-star-fill' : 'bi bi-star'"></i>
-</div>
+</div> -->
 
-<input [(ngModel)]="text" />
-<p>{{ text | preposition }}</p>
+<!-- <input [(ngModel)]="text" />
+<p>{{ text | preposition }}</p> -->
+
+<!-- <form #f="ngForm" name="f" (ngSubmit)="submit(f)">
+  <div class="form-group">
+    <label for="courseName">Course Name</label>
+    <input
+      required
+      ngModel
+      name="courseName"
+      #courseName="ngModel"
+      minlength="5"
+      id="courseName"
+      type="text"
+      class="form-control"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="courseName.touched && courseName.value == ''"
+    >
+      Name is required
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Category</label>
+    <select
+      required
+      class="form-control"
+      ngModel
+      name="category"
+      #category="ngModel"
+    >
+      <option value=""></option>
+      <option *ngFor="let cat of categories" [value]="cat.id">
+        {{ cat.name }}
+      </option>
+    </select>
+    <div
+      class="alert alert-danger"
+      *ngIf="category.touched && category.value == ''"
+    >
+      Category is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="hasGuarantee">
+      <input id="hasGuarantee" name="hasGuarantee" ngModel type="checkbox" />
+      30-day money-back guarantee
+    </label>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" [disabled]="f.invalid">Create</button>
+  </div>
+
+  {{ f.value | json }}
+</form> -->
+
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+  <label for="oldPass">Old Password</label>
+  <input
+    formControlName="oldPass"
+    type="text"
+    id="oldPass"
+    class="form-control"
+  />
+  <label for="newPass">New Password</label
+  ><input
+    formControlName="newPass"
+    type="text"
+    input="text"
+    id="newPass"
+    class="form-control"
+  />
+  <label for="confirmPassword">Confirm Password</label
+  ><input
+    formControlName="confirmPass"
+    type="text"
+    input="text"
+    id="confirmPassword"
+    class="form-control"
+  />
+  <div
+    class="alert alert-danger"
+    *ngIf="
+      this.form.get('confirmPass')?.touched &&
+      this.form.get('confirmPass')?.value == ''
+    "
+  >
+    <div *ngIf="this.form.get('confirmPass')?.errors?.['required']">
+      Confirm password is needed
+    </div>
+    <div
+      *ngIf="
+        this.form.get('confirmPass')?.value !== this.form.get('newPass')?.value
+      "
+    >
+      Password do not match
+    </div>
+  </div>
+  <button class="btn btn-primary">Submit</button>
+</form>

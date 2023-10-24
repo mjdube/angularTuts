@@ -1,0 +1,88 @@
+<!-- FORMGROUP SECTION -->
+<form [formGroup]="form" (ngSubmit)="login()">
+  <div formGroupName="account">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        formControlName="username"
+        id="username"
+        type="text"
+        class="form-control"
+      />
+      <!-- Loader :  using the "Pending" -->
+      <div *ngIf="username?.pending">Checking for uniqueness....</div>
+      <!-- using the property methods -->
+      <div
+        *ngIf="username?.touched && username?.invalid"
+        class="alert alert-danger"
+      >
+        <div *ngIf="username?.errors?.['required']">Username is required</div>
+        <div *ngIf="username?.errors?.['minlength']">
+          Username should be minimum 3 characters
+        </div>
+        <div *ngIf="username?.errors?.['cannotContainSpace']">
+          Username cannot contain empty spaces
+        </div>
+        <div *ngIf="username?.errors?.['shouldBeUnique1']">
+          Username already taken
+        </div>
+      </div>
+      <!-- <div
+            *ngIf="form?.get('username')?.touched && form.get('username')?.invalid"
+            class="alert alert-danger"
+          >
+            Username is required
+          </div> -->
+    </div>
+    <div class="form-group">
+      <label formControlName="password" for="password">Password</label>
+      <input id="password" type="text" class="form-control" />
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Sign Up</button>
+</form>
+
+<!-- FORMCONTROL SECTION -->
+<!-- <form [formGroup]="form" (ngSubmit)="login()">
+    <div *ngIf="form.errors" class="alert alert-danger">
+      The username or password is invalid
+    </div>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        formControlName="username"
+        id="username"
+        type="text"
+        class="form-control"
+      /> -->
+<!-- Loader :  using the "Pending" -->
+<!-- <div *ngIf="username?.pending">Checking for uniqueness....</div> -->
+<!-- using the property methods -->
+<!-- <div
+        *ngIf="username?.touched && username?.invalid"
+        class="alert alert-danger"
+      >
+        <div *ngIf="username?.errors?.['required']">Username is required</div>
+        <div *ngIf="username?.errors?.['minlength']">
+          Username should be minimum 3 characters
+        </div>
+        <div *ngIf="username?.errors?.['cannotContainSpace']">
+          Username cannot contain empty spaces
+        </div>
+        <div *ngIf="username?.errors?.['shouldBeUnique1']">
+          Username already taken
+        </div>
+      </div> -->
+<!-- <div
+        *ngIf="form?.get('username')?.touched && form.get('username')?.invalid"
+        class="alert alert-danger"
+      >
+        Username is required
+      </div> -->
+<!-- </div>
+    <div class="form-group">
+      <label formControlName="password" for="password">Password</label>
+      <input id="password" type="text" class="form-control" />
+    </div>
+    <button class="btn btn-primary" type="submit">Sign Up</button>
+  </form> -->
