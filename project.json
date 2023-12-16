@@ -9,6 +9,7 @@
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "options": {
+        "browserTarget": "hello-world:build",
         "outputPath": "dist/hello-world",
         "index": "src/index.html",
         "main": "src/main.ts",

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'; // <---- component decorator
-import { CoursesService } from './courses.service';
+import { CoursesService } from './services/courses.service';
 
 @Component({
   // <--- decorator

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -11,8 +12,8 @@ import { AuthorsComponent } from './authors/authors.component';
 import { ExecisesComponent } from './execises/execises.component';
 
 // Services
-import { AuthorsService } from './authors.service';
-import { CoursesService } from './courses.service';
+import { AuthorsService } from './services/authors.service';
+import { CoursesService } from './services/courses.service';
 
 // Pipes
 import { SummaryPipe } from './summary.pipe';
@@ -22,12 +23,12 @@ import { PanelComponent } from './panel/panel.component';
 import { LikeComponent } from './like/like.component';
 import { InputFormatDirective } from './input-format.directive';
 import { ZippyComponent } from './zippy/zippy.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { CourseFormComponent } from './course-form/course-form.component';
 import { FormContactComponent } from './form-contact/form-contact.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { NewCourseComponent } from './new-course/new-course.component';
+import { PostsService } from './services/posts.service';
 
 // <--- NgModule decorator
 @NgModule({
@@ -49,7 +50,8 @@ import { NewCourseComponent } from './new-course/new-course.component';
     CourseFormComponent,
     FormContactComponent,
     SignupFormComponent,
-  NewCourseComponent,],
+    NewCourseComponent,
+  ],
   // import Modules
   imports: [
     BrowserModule,
@@ -59,7 +61,7 @@ import { NewCourseComponent } from './new-course/new-course.component';
     ReactiveFormsModule,
   ],
   // register services
-  providers: [CoursesService, AuthorsService],
+  providers: [CoursesService, AuthorsService, PostsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
