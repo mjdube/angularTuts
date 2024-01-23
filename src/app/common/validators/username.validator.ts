@@ -26,7 +26,8 @@ export class UsernameValidators {
       }, 2000);
     });
   }
-
+  // when we access the static method from the class we don't need to create an instance of the class
+  // UsernameValidators.cannotContainSpace <-- static method
   /*
     cannotContainSpace1(control: AbstractControl) : ValidationErrors | any {
         if ((control.value as string).indexOf(' ') >= 0)

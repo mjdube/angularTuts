@@ -9,8 +9,15 @@ import {
 @Component({
   selector: 'favourite',
   templateUrl: './favourite.component.html',
+
+  // inline template
+  // template: `<h1>Hello World</h1>`,
+
   styleUrls: ['./favourite.component.css'],
-  styles: [``],
+  // inline styles
+  // styles: [`
+  //   .glyphicon { color : red }`],
+
   // inputs: ['isFavourite'],
 
   // It emulate the shadow DOM
@@ -41,7 +48,7 @@ export class FavouriteComponent {
   }
 }
 
-// Export interface
+// Export interface`
 export interface FavouriteChangeEventArgs {
   newValue: boolean;
 }
